@@ -1,0 +1,9 @@
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+
+logging:
+  level:
+    com.tsarev.CbrApi: debug
