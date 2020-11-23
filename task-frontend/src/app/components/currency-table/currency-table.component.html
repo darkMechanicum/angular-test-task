@@ -1,0 +1,43 @@
+<div class="currency-table-container mat-elevation-z8">
+  <table mat-table class="full-width-table" aria-label="Elements">
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell
+          *matCellDef="let row"
+          [class.maxValueLeft]="pMaxRate === row.rate"
+          [class.minValueLeft]="pMinRate === row.rate"
+      >{{row.code}}</td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell
+          *matCellDef="let row"
+          [class.maxMiddleValue]="pMaxRate === row.rate"
+          [class.minMiddleValue]="pMinRate === row.rate"
+      >{{row.date}}</td>
+    </ng-container>
+
+    <!-- Rate Column -->
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef>Rate</th>
+      <td mat-cell
+          *matCellDef="let row"
+          [class.maxValueRight]="pMaxRate === row.rate"
+          [class.minValueRight]="pMinRate === row.rate"
+      >{{row.rate}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        [ngStyle]="{
+            'background-color' : row.ratePercent > 50 ?
+              'rgba(255, 89, 112, ' + ((row.ratePercent - 50) * 2 / 100 - 0.3) + ')' :
+              'rgba(66, 137, 255, ' + ((50 - row.ratePercent) * 2 / 100 - 0.3) + ')'
+          }"
+    ></tr>
+  </table>
+</div>

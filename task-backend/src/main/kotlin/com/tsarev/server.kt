@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.time.LocalDate
 
 /**
  * Handlers for outer requests.
@@ -20,10 +19,12 @@ open class OnlineTest(
     @GetMapping("/currencies")
     open fun getCurrenciesPaged(
         @RequestParam(defaultValue = "0") offset: Int,
-        @RequestParam(defaultValue = "20") limit: Int
+        @RequestParam(defaultValue = "20") pageSize: Int,
+        @RequestParam substring: String?
     ) = api.getAllAvailableCurrencies()
+        .filter { it.name.toUpperCase().contains(substring?.toUpperCase() ?: "") }
         .drop(if (offset < 0) 0 else offset)
-        .take(if (limit < 0) 0 else limit)
+        .take(if (pageSize < 0) 0 else pageSize)
 
     /**
      * Get month currency rate.

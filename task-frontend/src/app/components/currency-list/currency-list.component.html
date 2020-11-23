@@ -1,0 +1,31 @@
+<mat-form-field appearance="fill">
+  <mat-label>Choose currency</mat-label>
+  <label>
+    <input
+      #input
+      (input)="onChangeSearchString(input.value)"
+      (focus)="onFocus(input)"
+      type="text"
+      matInput
+      [matAutocomplete]="auto">
+  </label>
+  <mat-autocomplete
+    disableRipple
+    autoActiveFirstOption
+    (opened)="subscribeMaxScroll()"
+    (closed)="unsubscribeMaxScroll()"
+    #auto="matAutocomplete"
+    [displayWith]="displayCurrency">
+    <mat-option
+      (onSelectionChange)="onChangeSelection($event, input)"
+      *ngFor="let currency of myCurrencies | async"
+      [value]="currency"
+    >
+      {{currency.name}}
+    </mat-option>
+    <mat-option
+      *ngIf="showSpinner">
+      <mat-spinner class="spinner" diameter="20"></mat-spinner>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

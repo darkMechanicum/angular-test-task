@@ -20,13 +20,14 @@ open class CachedApi(
     @Cacheable("currenciesCache")
     open fun getAllAvailableCurrencies(): List<CurrencyDescription>{
         var latch = 100;
+        var pageNumber = 0;
         lateinit var currenices: List<CurrencyDescription>
         val allCurrencies = mutableListOf<CurrencyDescription>()
         do {
-            currenices = cbrApi.getCurrencyTypes(0).items
+            currenices = cbrApi.getCurrencyTypes(pageNumber++).items
             allCurrencies += currenices
         } while (--latch > 0 && currenices.isNotEmpty())
-        return allCurrencies.sortedBy { it.displayName }
+        return allCurrencies.sortedBy { it.name }
     }
 
     @Cacheable("monthCurrenciesRateCache")

@@ -17,7 +17,8 @@ class CurrencyDescription {
     lateinit var code: String
 
     @set:JsonProperty("Name")
-    lateinit var displayName: String
+    @get:JsonProperty("name")
+    var name: String = ""
 }
 
 /**
@@ -43,8 +44,9 @@ class CurrencyRate {
     @set:JacksonXmlProperty(isAttribute = true, localName = "Date")
     lateinit var date: LocalDate
 
-    @get:JsonDeserialize(using = CommaSeparatedPrimitiveDoubleDeserializer::class)
+    @set:JsonDeserialize(using = CommaSeparatedPrimitiveDoubleDeserializer::class)
     @set:JsonProperty("Value")
+    @get:JsonProperty("rate")
     var rate: Double = Double.NaN
 }
 

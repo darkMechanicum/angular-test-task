@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import feign.jackson.JacksonDecoder
-import org.codehaus.stax2.typed.Base64Variant
 import org.springframework.cloud.openfeign.FeignClientBuilder
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware

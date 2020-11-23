@@ -1,0 +1,19 @@
+<mat-form-field appearance="fill">
+  <label>
+    <input
+      matInput [matDatepicker]="dp2"
+      [max]="today"
+      placeholder="Select a Date"
+      (click)="openDatePicker(dp2)"
+    >
+  </label>
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="dp2">
+  </mat-datepicker-toggle>
+  <mat-datepicker
+    #dp2
+    startView="year"
+    (monthSelected)="closeDatePicker($event, dp2)">
+  </mat-datepicker>
+</mat-form-field>
